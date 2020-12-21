@@ -64,8 +64,10 @@ EOL
 echo disabling default host
 a2dissite 000-default.conf
 
-echo enabling invoiceninja and rewrite modules
+echo enabling invoiceninja site
 a2ensite invoiceninja.conf
+
+echo enabling rewrite module
 a2enmod rewrite
 
 echo restarting apache
