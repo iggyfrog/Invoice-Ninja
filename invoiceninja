@@ -79,6 +79,6 @@ cat > /etc/cron.d/invoices << EOL
 EOL
 
 echo configuring reminders cronjob
-cat > /etc/cron.d/invoices << EOL
+cat > /etc/cron.d/reminders << EOL
 0 8 * * * root /usr/local/bin/php /var/www/html/invoiceninja/artisan ninja:send-reminders
 EOL
