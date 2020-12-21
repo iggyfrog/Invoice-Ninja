@@ -72,3 +72,13 @@ a2enmod rewrite
 
 echo restarting apache
 systemctl restart apache2.service
+
+echo configuring invoices cronjob
+cat > /etc/cron.d/invoices << EOL
+0 8 * * * root /usr/local/bin/php /var/www/html/invoiceninja/artisan ninja:send-invoices
+EOL
+
+echo configuring reminders cronjob
+cat > /etc/cron.d/invoices << EOL
+0 8 * * * root /usr/local/bin/php /var/www/html/invoiceninja/artisan ninja:send-reminders
+EOL
