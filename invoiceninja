@@ -61,7 +61,7 @@ cat > /etc/apache2/sites-available/invoiceninja.conf << EOL
 </VirtualHost>
 EOL
 
-echo disabling default host
+echo disabling default site
 a2dissite 000-default.conf
 
 echo enabling invoiceninja site
