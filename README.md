@@ -6,7 +6,7 @@ bash <(wget --no-check-certificate -qO- https://raw.githubusercontent.com/aristo
 ```
 This will install Invoice Ninja on Debian 10 (Buster)
 
-mariaDB root password: invoiceninja
-database Name: invoiceninja
-database Username: invoiceninja
-database Password: invoiceninja
+- mariaDB root password: invoiceninja
+- database Name: invoiceninja
+- database Username: invoiceninja
+- database Password: invoiceninja
