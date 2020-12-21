@@ -1,6 +1,4 @@
-# invoiceninja
-
-Invoice Ninja
+# Invoice Ninja
 
 Run the command below on a clean, minimal installation of Debian 10 (Buster).
 ```
