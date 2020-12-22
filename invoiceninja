@@ -85,3 +85,5 @@ EOL
 
 echo configuring phantomjs
 echo PHANTOMJS_BIN_PATH=/usr/bin/phantomjs >> /var/www/html/invoiceninja/.env
+
+echo installation complete
