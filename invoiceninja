@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo installing prerequisites
-apt install -y apache2 php mariadb-server libapache2-mod-php php-gmp php-curl php-intl php-mbstring php-xmlrpc php-mysql php-gd php-xml php-cli php-zip curl git composer phantomjs
+apt install -y apache2 php mariadb-server libapache2-mod-php php-gmp php-curl php-intl php-mbstring php-xmlrpc php-mysql php-gd php-xml php-cli php-zip curl git composer
 
 echo securing mariadb
 echo setting mariadb root password
