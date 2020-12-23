@@ -83,7 +83,4 @@ cat > /etc/cron.d/reminders << EOL
 0 8 * * * root /usr/local/bin/php /var/www/html/invoiceninja/artisan ninja:send-reminders
 EOL
 
-echo configuring phantomjs
-echo PHANTOMJS_BIN_PATH=/usr/bin/phantomjs >> /var/www/html/invoiceninja/.env
-
 echo installation complete
