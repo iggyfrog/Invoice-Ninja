@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo installing prerequisites
-apt install -y apache2 php mariadb-server libapache2-mod-php php-gmp php-curl php-intl php-mbstring php-xmlrpc php-mysql php-gd php-xml php-cli php-zip curl git composer
+apt install -y apache2 php mariadb-server libapache2-mod-php php-gmp php-curl php-intl php-mbstring php-xmlrpc php-mysql php-gd php-xml php-cli php-zip curl git composer gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils
 
 echo securing mariadb
 echo setting mariadb root password
@@ -35,7 +35,15 @@ echo installing invoiceninja
 cd /var/www/html
 git clone https://github.com/invoiceninja/invoiceninja.git
 cd /var/www/html/invoiceninja
+git checkout v5-stable
 composer install
+
+echo installing nodejs
+curl -sL https://deb.nodesource.com/setup_10.x | bash -
+apt install -y nodejs
+
+echo installing puppeteer
+npm install puppeteer
 
 echo setting permissions
 chown -R www-data:www-data /var/www/html/invoiceninja/
