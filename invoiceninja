@@ -35,7 +35,6 @@ echo installing invoiceninja
 cd /var/www/html
 git clone https://github.com/invoiceninja/invoiceninja.git
 cd /var/www/html/invoiceninja
-git checkout v5-stable
 composer install
 
 echo installing nodejs
