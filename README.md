@@ -9,7 +9,7 @@ bash <(wget --no-check-certificate -qO- https://raw.githubusercontent.com/aristo
 
 Invoice Ninja v4
 ```
-bash <(wget --no-check-certificate -qO- https://raw.githubusercontent.com/aristosv/invoiceninja/master/invoiceninja)
+bash <(wget --no-check-certificate -qO- https://raw.githubusercontent.com/aristosv/invoiceninja/master/invoiceninja4)
 ```
 
 This will install Invoice Ninja on Debian 10 (Buster)
