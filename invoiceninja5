@@ -21,10 +21,9 @@ wget -P /var/www/html/invoiceninja https://github.com/invoiceninja/invoiceninja/
 unzip /var/www/html/invoiceninja/invoiceninja.zip -d /var/www/html/invoiceninja/
 
 echo configure pdf support
-cd /var/www/html/invoiceninja
-./vendor/bin/snappdf download
+cd /var/www/html/invoiceninja/vendor/bin/ && ./snappdf download
 sed -i -e 's/PHANTOMJS_PDF_GENERATION=true/PHANTOMJS_PDF_GENERATION=false/g' /var/www/html/invoiceninja/.env
-php artisan optimize
+cd /var/www/html/invoiceninja/ && php artisan optimize
 
 echo set permissions
 chown -R www-data:www-data /var/www/html/invoiceninja/
@@ -58,3 +57,6 @@ a2enmod rewrite
 
 echo restart apache
 systemctl restart apache2.service
+
+echo installation complete
+echo visit http://<your-server-ip>
