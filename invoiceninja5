@@ -59,4 +59,3 @@ echo restart apache
 systemctl restart apache2.service
 
 echo installation complete
-echo visit http://<your-server-ip>
