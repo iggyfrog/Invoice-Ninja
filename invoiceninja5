@@ -64,3 +64,4 @@ a2enmod rewrite
 systemctl restart apache2.service
 
 echo installation complete
+echo visit http://$(hostname -I | cut -d' ' -f1)
