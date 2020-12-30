@@ -1,40 +1,40 @@
 #!/bin/bash
 
-echo install prerequisites
+# install prerequisites
 apt install -y apache2 php mariadb-server php-bcmath php-mbstring php-xml php-curl php-zip php-gmp php-mysqli php-gd wget unzip curl ca-certificates fonts-liberation libappindicator3-1 libasound2 libatk-bridge2.0-0 libatk1.0-0 libcairo2 libcups2 libfontconfig1 libgbm1 libgtk-3-0 libnspr4 libnss3 libpango-1.0-0 libpangocairo-1.0-0 libx11-xcb1 libxcomposite1 libxcursor1 libxdamage1 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 xdg-utils
 
-echo secure mariadb
+# secure mariadb
 mysql --user="root" --password="" --execute="SET PASSWORD FOR 'root'@'localhost' = PASSWORD('invoiceninja');"
 mysql --user="root" --password="" --execute="DELETE FROM mysql.user WHERE User='';"
 mysql --user="root" --password="" --execute="DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');"
 mysql --user="root" --password="" --execute="DELETE FROM mysql.db WHERE Db='test' OR Db='test\_%';"
 mysql --user="root" --password="" --execute="FLUSH PRIVILEGES;"
 
-echo create database
+# create database
 mysql --user="root" --password="invoiceninja" --execute="CREATE DATABASE invoiceninja;"
 mysql --user="root" --password="invoiceninja" --execute="CREATE USER 'invoiceninja'@'localhost' IDENTIFIED BY 'invoiceninja';"
 mysql --user="root" --password="invoiceninja" --execute="GRANT ALL ON invoiceninja.* TO 'invoiceninja'@'localhost' IDENTIFIED BY 'invoiceninja' WITH GRANT OPTION;"
 mysql --user="root" --password="invoiceninja" --execute="FLUSH PRIVILEGES;"
 
-echo download invoiceninja
+# install invoiceninja
 wget -P /var/www/html/invoiceninja https://github.com/invoiceninja/invoiceninja/releases/download/v5.0.39-release/invoiceninja.zip
 unzip /var/www/html/invoiceninja/invoiceninja.zip -d /var/www/html/invoiceninja/
 
-echo configure scheduled task
+# configure scheduled task
 cat > /etc/cron.d/invoiceninja << EOL
 * * * * * www-data php /var/www/html/invoiceninja/artisan schedule:run >> /dev/null 2>&1
 EOL
 
-echo configure pdf support
+# configure pdf support
 php /var/www/html/invoiceninja/vendor/bin/snappdf download
 sed -i -e 's/PHANTOMJS_PDF_GENERATION=true/PHANTOMJS_PDF_GENERATION=false/g' /var/www/html/invoiceninja/.env
 cd /var/www/html/invoiceninja ; php artisan optimize
 
-echo set permissions
+# set permissions
 chown -R www-data:www-data /var/www/html/invoiceninja/
 chmod -R 755 /var/www/html/invoiceninja/
 
-echo add virtual host
+# add virtual host
 cat > /etc/apache2/sites-available/invoiceninja.conf << EOL
 <VirtualHost *:80>
      ServerAdmin admin@example.com
@@ -51,16 +51,16 @@ cat > /etc/apache2/sites-available/invoiceninja.conf << EOL
 </VirtualHost>
 EOL
 
-echo disable default site
+# disable default site
 a2dissite 000-default.conf
 
-echo enable invoiceninja site
+# enable invoiceninja site
 a2ensite invoiceninja.conf
 
-echo enable rewrite module
+# enable rewrite module
 a2enmod rewrite
 
-echo restart apache
+# restart apache
 systemctl restart apache2.service
 
 echo installation complete
