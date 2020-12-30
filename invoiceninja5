@@ -20,6 +20,11 @@ echo download invoiceninja
 wget -P /var/www/html/invoiceninja https://github.com/invoiceninja/invoiceninja/releases/download/v5.0.39-release/invoiceninja.zip
 unzip /var/www/html/invoiceninja/invoiceninja.zip -d /var/www/html/invoiceninja/
 
+echo configure scheduled task
+cat > /etc/cron.d/invoiceninja << EOL
+* * * * * php /var/www/html/invoiceninja/artisan schedule:run >> /dev/null 2>&1
+EOL
+
 echo configure pdf support
 php /var/www/html/invoiceninja/vendor/bin/snappdf download
 sed -i -e 's/PHANTOMJS_PDF_GENERATION=true/PHANTOMJS_PDF_GENERATION=false/g' /var/www/html/invoiceninja/.env
