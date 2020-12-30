@@ -21,7 +21,7 @@ wget -P /var/www/html/invoiceninja https://github.com/invoiceninja/invoiceninja/
 unzip /var/www/html/invoiceninja/invoiceninja.zip -d /var/www/html/invoiceninja/
 
 echo configure pdf support
-. /var/www/html/invoiceninja/vendor/bin/snappdf download
+php /var/www/html/invoiceninja/vendor/bin/snappdf download
 sed -i -e 's/PHANTOMJS_PDF_GENERATION=true/PHANTOMJS_PDF_GENERATION=false/g' /var/www/html/invoiceninja/.env
 cd /var/www/html/invoiceninja ; php artisan optimize
 
