@@ -22,7 +22,7 @@ unzip /var/www/html/invoiceninja/invoiceninja.zip -d /var/www/html/invoiceninja/
 
 echo configure scheduled task
 cat > /etc/cron.d/invoiceninja << EOL
-* * * * * php /var/www/html/invoiceninja/artisan schedule:run >> /dev/null 2>&1
+* * * * * www-data php /var/www/html/invoiceninja/artisan schedule:run >> /dev/null 2>&1
 EOL
 
 echo configure pdf support
