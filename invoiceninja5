@@ -17,7 +17,7 @@ mysql --user="root" --password="invoiceninja" --execute="GRANT ALL ON invoicenin
 mysql --user="root" --password="invoiceninja" --execute="FLUSH PRIVILEGES;"
 
 # install invoiceninja
-wget -P /var/www/html/invoiceninja https://github.com/invoiceninja/invoiceninja/releases/download/v5.0.39-release/invoiceninja.zip
+wget -P /var/www/html/invoiceninja https://github.com/invoiceninja/invoiceninja/releases/download/v5.0.53-release/invoiceninja.zip
 unzip /var/www/html/invoiceninja/invoiceninja.zip -d /var/www/html/invoiceninja/
 
 # configure scheduled task
